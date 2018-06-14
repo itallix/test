@@ -1,0 +1,16 @@
+// Exported from:        http://leningrad.xebialabs.com:5516/#/templates/Folder2b80575239394ebc82d8a887e0513b97-Folder4d01832f5def4ddcaf5eb836b00e730c-Release5228a1cc2880466eb4a01a07e81e90d2/releasefile
+// XL Release version:   8.1.0-rc.3
+// Date created:         Thu Jun 14 11:22:46 CEST 2018
+
+xlr {
+  template('ing_tpl1') {
+    folder('Banking/ING')
+    scheduledStartDate Date.parse("yyyy-MM-dd'T'HH:mm:ssZ", '2018-06-14T09:00:00+0200')
+    phases {
+      phase('New Phase') {
+        
+      }
+    }
+    
+  }
+}
