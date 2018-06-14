@@ -1,6 +1,6 @@
 // Exported from:        http://leningrad.xebialabs.com:5516/#/templates/Folder2b80575239394ebc82d8a887e0513b97-Folderf4296de034644d5834efafa99909550-Releaseeb68f9bc60f946e991eb94a95bb306b2/releasefile
 // XL Release version:   8.1.0-rc.3
-// Date created:         Thu Jun 14 11:13:17 CEST 2018
+// Date created:         Thu Jun 14 11:14:21 CEST 2018
 
 def server(type, title, folderPath = null) {
     def folderId = null
@@ -78,6 +78,9 @@ xlr {
         color '#0099CC'
         tasks {
           gate('ok?') {
+            
+          }
+          manual('t1') {
             
           }
         }
