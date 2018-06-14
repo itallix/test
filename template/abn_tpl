@@ -1,0 +1,75 @@
+// Exported from:        http://leningrad.xebialabs.com:5516/#/templates/Folder2b80575239394ebc82d8a887e0513b97-Folderf4296de034644d5834efafa99909550-Releaseeb68f9bc60f946e991eb94a95bb306b2/releasefile
+// XL Release version:   8.1.0-rc.3
+// Date created:         Thu Jun 14 11:07:06 CEST 2018
+
+def server(type, title, folderPath = null) {
+    def folderId = null
+    if(folderPath) {
+          folderId = folderApi.find(folderPath, 0).getId()
+    }
+    def cis = configurationApi.searchByTypeAndTitle(type, title, folderId)
+    if (cis.isEmpty()) {
+        throw new RuntimeException("No CI found for the type '${type}' and title '${title}'")
+    }
+    if (cis.size() > 1) {
+        throw new RuntimeException("More than one CI found for the type '${type}' and title '${title}'")
+    }
+    cis.get(0)
+}
+
+def jenkinsServer1 = server('jenkins.Server','vagrant','Banking')
+def jenkinsServer2 = server('jenkins.Server','vagrant','Banking')
+
+xlr {
+  template('tpl') {
+    folder('Banking/ABN')
+    scheduledStartDate Date.parse("yyyy-MM-dd'T'HH:mm:ssZ", '2018-06-13T09:00:00+0200')
+    phases {
+      phase('New Phase') {
+        tasks {
+          parallelGroup('g1') {
+            owner 'admin'
+            taskFailureHandlerEnabled true
+            taskRecoverOp com.xebialabs.xlrelease.domain.recover.TaskRecoverOp.SKIP_TASK
+            tasks {
+              script('j1') {
+                script 'sleep(1)'
+              }
+              script('j2') {
+                script 'sleep(2)\n' +
+                       's'
+              }
+            }
+          }
+          custom('j1') {
+            taskFailureHandlerEnabled true
+            taskRecoverOp com.xebialabs.xlrelease.domain.recover.TaskRecoverOp.SKIP_TASK
+            script {
+              type 'jenkins.Build'
+              jenkinsServer jenkinsServer1
+              jobName 'Test'
+            }
+          }
+          custom('j2') {
+            failureHandler 'releaseVariables[\'var1\'] = \'Hello, World!"\n' +
+                           'taskApi.skipTask(getCurrentTask().getId())'
+            taskFailureHandlerEnabled true
+            taskRecoverOp com.xebialabs.xlrelease.domain.recover.TaskRecoverOp.RUN_SCRIPT
+            script {
+              type 'jenkins.Build'
+              jenkinsServer jenkinsServer2
+              jobName 'Test'
+            }
+          }
+          gate('ok?') {
+            
+          }
+          manual('t1') {
+            
+          }
+        }
+      }
+    }
+    
+  }
+}
