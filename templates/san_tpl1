@@ -1,6 +1,6 @@
 // Exported from:        http://leningrad.xebialabs.com:5516/#/templates/Folderade88b952e7947539ae78dbba802e811-Foldera6928d2a68fd4d6db7c733bb223cf946-Release343a3fb826724b08989f546d7dae7b39/releasefile
 // XL Release version:   8.1.0-rc.3
-// Date created:         Thu Jun 14 15:07:01 CEST 2018
+// Date created:         Thu Jun 14 15:10:10 CEST 2018
 
 xlr {
   template('san_tpl1') {
@@ -12,12 +12,15 @@ xlr {
           manual('t1') {
             
           }
+          manual('t2') {
+            attachments {
+              attachment("sql:Attachmentd60f1a9df754e3ba4e1cffd36e8e846") {
+                filename "attachments/Attachmentd60f1a9df754e3ba4e1cffd36e8e846-CodeOrganization.md"
+              }
+            }
+            taskFailureHandlerEnabled true
+          }
         }
-      }
-    }
-    attachments {
-      attachment("sql:Attachment2cddda0f9a6a48ed95c94ca6d807ddfc") {
-        filename "attachments/Attachment2cddda0f9a6a48ed95c94ca6d807ddfc-bisect.sh"
       }
     }
     
