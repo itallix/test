@@ -1,0 +1,20 @@
+// Exported from:        http://leningrad.xebialabs.com:5516/#/templates/Folderade88b952e7947539ae78dbba802e811-Foldera6928d2a68fd4d6db7c733bb223cf946-Release343a3fb826724b08989f546d7dae7b39/releasefile
+// XL Release version:   8.1.0-rc.3
+// Date created:         Thu Jun 14 15:05:07 CEST 2018
+
+xlr {
+  template('san_tpl1') {
+    folder('Banking/Santander')
+    scheduledStartDate Date.parse("yyyy-MM-dd'T'HH:mm:ssZ", '2018-06-14T09:00:00+0200')
+    phases {
+      phase('New Phase') {
+        tasks {
+          manual('t1') {
+            
+          }
+        }
+      }
+    }
+    
+  }
+}
