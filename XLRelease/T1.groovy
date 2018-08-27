@@ -1,6 +1,6 @@
 // Exported from:        http://piter.local:5516/#/templates/Release6b86d7241149419e852cd814154b91e6/releasefile
 // XL Release version:   8.1.0-SNAPSHOT
-// Date created:         Mon Aug 27 14:10:53 CEST 2018
+// Date created:         Mon Aug 27 14:28:06 CEST 2018
 
 xlr {
   template('T1') {
